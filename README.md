@@ -12,6 +12,8 @@
 - https://openrouter.ai/settings/keys
 - https://openrouter.ai/docs/quick-start
 
+### Search Models and Useful Models
+
 - https://openrouter.ai/models?max_price=0&q=llama
 - https://openrouter.ai/meta-llama/llama-3.1-8b-instruct:free
 - https://openrouter.ai/meta-llama/llama-3.1-70b-instruct:free
@@ -33,9 +35,8 @@ Writing / Editing / Running Source Code!
 
 ## Create .env File (For Saving Passwords / API Keys / Access Tokens)
 
-- Create a file:
-    - .env
-        - OPENAI_API_KEY="..."
+- In the root of folder, create a file with the name of '.env' and write the below code:
+    - OPENAI_API_KEY="..."
 
 ## Fix PyLint Warnings
 
