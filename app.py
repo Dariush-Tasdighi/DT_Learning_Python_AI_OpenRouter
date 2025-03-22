@@ -150,8 +150,14 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
+KEY_NAME_API_KEY: str = "OPENAI_API_KEY"
+BASE_URL: str = "https://openrouter.ai/api/v1"
+
+TEMPERATURE: float = 0.7
+MODEL_NAME: str = "google/gemma-3-27b-it:free"
+
 SYSTEM_PROMPT: str = "you are a helpful assistant."
-SYSTEM_MESSAGE = {"role": "system", "content": SYSTEM_PROMPT}
+SYSTEM_MESSAGE: dict = {"role": "system", "content": SYSTEM_PROMPT}
 
 os.system(command="cls")
 
@@ -185,13 +191,14 @@ while True:
     chat_completion = client.chat.completions.create(
         model=MODEL_NAME,
         messages=messages,
+        temperature=TEMPERATURE,
     )
 
     assistant_answer: str | None = chat_completion.choices[0].message.content
 
     if not assistant_answer:
         messages.pop()
-        assistant_answer = "I'm sorry, I don't understand."
+        assistant_answer = "I'm sorry, I don't understand!"
     else:
         assistant_answer = assistant_answer.strip()
         message_assistant = {"role": "assistant", "content": assistant_answer}
