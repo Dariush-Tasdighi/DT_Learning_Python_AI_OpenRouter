@@ -1,21 +1,33 @@
-# Using OpenRouter API
+# Learning OpenRouter
 
-- https://openrouter.ai
-- https://pypi.org/project/openai
+- Package: 'rich'
+    - https://pypi.org/project/rich
+    - https://github.com/Textualize/rich
+    - https://rich.readthedocs.io/en/latest
+
+- Package: 'openai'
+    - https://pypi.org/project/openai
+    - https://github.com/openai/openai-python
+
+- Package: 'dotenv-python'
+    - https://pypi.org/project/dotenv-python
+    - https://github.com/TsuiJie/dotenv-python
+
+---
 
 ### References
 
-- https://openrouter.ai/chat
-- https://openrouter.ai/models
-- https://openrouter.ai/activity
-- https://openrouter.ai/rankings
-- https://openrouter.ai/settings/keys
-- https://openrouter.ai/docs/quick-start
+- https://openrouter.ai
+    - https://openrouter.ai/chat
+    - https://openrouter.ai/models
+    - https://openrouter.ai/activity
+    - https://openrouter.ai/rankings
+    - https://openrouter.ai/settings/keys
+    - https://openrouter.ai/docs/quick-start
 
-### Search Models and Useful Models
+- https://openrouter.ai/models?max_price=0&order=newest
 
-- https://openrouter.ai/meta-llama/llama-3.3-70b-instruct:free
-- https://openrouter.ai/models?max_price=0&q=llama&order=newest
+---
 
 ### Setup Environment
 
@@ -36,25 +48,15 @@ python -m pip install -U pip
 ```
 
 ```bash
+python -m pip install -U rich
+```
+
+```bash
 python -m pip install -U openai
 ```
 
 ```shell
 python -m pip install -U python-dotenv
-```
-
-##### Just for Jupiter Notebook
-
-```bash
-python -m pip install -U ipython
-```
-
-```bash
-python -m pip install -U ipykernel
-```
-
-```bash
-python -m pip install -U ipywidgets
 ```
 
 ```bash
