@@ -43,7 +43,7 @@ def chat(
     )
 
     if notify:
-        print(f"Ollama chat started ({model_name})...")
+        print(f"OpenAI chat started ({model_name})...")
 
     response: ChatCompletion = client.chat.completions.create(
         stream=False,
@@ -53,7 +53,7 @@ def chat(
     )
 
     if notify:
-        print(f"Ollama chat finished ({model_name}).")
+        print(f"OpenAI chat finished ({model_name}).")
 
     assistant_answer: str | None = response.choices[0].message.content
 
