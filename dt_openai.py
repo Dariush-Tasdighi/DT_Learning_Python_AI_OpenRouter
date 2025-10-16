@@ -30,7 +30,6 @@ def chat(
 ) -> tuple[str | None, int, int]:
     """Chat function."""
 
-    # NEW
     if not api_key:
         api_key = utility.get_key_value(
             key=KEY_NAME_OPENAI_API_KEY,
@@ -48,7 +47,6 @@ def chat(
         stream=False,
         model=model_name,
         messages=messages,  # type: ignore
-        # NEW
         temperature=temperature,
     )
 

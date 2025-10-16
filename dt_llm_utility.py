@@ -25,12 +25,8 @@ QUESTION_PROMPT: str = "User: "
 MESSAGE_NO_CONTENT_RECEIVED: str = "[-] No content received!"
 
 
-def get_key_value(key: str | None) -> str:
+def get_key_value(key: str) -> str:
     """Get key value function."""
-
-    if not key:
-        print("[-] Key is None!\n")
-        exit()
 
     load_dotenv(override=True)
 
@@ -44,18 +40,14 @@ def get_key_value(key: str | None) -> str:
 
 
 def save_text_file(text: str, file_path: str) -> None:
-    """
-    Save text file function.
-    """
+    """Save text file function."""
 
     with open(file=file_path, mode="wt", encoding="utf-8") as file:
         file.write(text)
 
 
 def load_text_file(file_path: str) -> str | None:
-    """
-    Load text file function.
-    """
+    """Load text file function."""
 
     if not os.path.exists(path=file_path):
         return None
@@ -69,9 +61,7 @@ def load_text_file(file_path: str) -> str | None:
 
 
 def serialize_and_save(obj, file_path: str) -> None:
-    """
-    Serialize and save function.
-    """
+    """Serialize and save function."""
 
     json_string: str = json.dumps(
         obj,
@@ -86,9 +76,7 @@ def serialize_and_save(obj, file_path: str) -> None:
 
 
 def load_and_deserialize(file_path: str):
-    """
-    Load and deserialize function.
-    """
+    """Load and deserialize function."""
 
     text: str | None = load_text_file(file_path=file_path)
 
