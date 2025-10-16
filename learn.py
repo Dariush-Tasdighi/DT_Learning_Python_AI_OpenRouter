@@ -23,6 +23,7 @@ ROLE_SYSTEM: str = "system".strip().lower()
 ROLE_ASSISTANT: str = "assistant".strip().lower()
 
 TEMPERATURE: float = 0.7
+# NEW
 KEY_NAME_OPENAI_API_KEY: str = "OPENAI_API_KEY"
 BASE_URL: str = "https://openrouter.ai/api/v1".strip().lower()
 MODEL_NAME: str = "google/gemma-3-27b-it:free".strip().lower()
@@ -44,10 +45,9 @@ def chat(
     model_name: str = MODEL_NAME,
     temperature: float = TEMPERATURE,
 ) -> tuple[str | None, int, int]:
-    """
-    Chat function.
-    """
+    """Chat function."""
 
+    # NEW
     if not api_key:
         api_key = utility.get_key_value(
             key=KEY_NAME_OPENAI_API_KEY,
@@ -59,17 +59,18 @@ def chat(
     )
 
     if notify:
-        print(f"Ollama chat started ({model_name})...")
+        print(f"OpenAI chat started ({model_name})...")
 
     response: ChatCompletion = client.chat.completions.create(
         stream=False,
         model=model_name,
         messages=messages,  # type: ignore
+        # NEW
         temperature=temperature,
     )
 
     if notify:
-        print(f"Ollama chat finished ({model_name}).")
+        print(f"OpenAI chat finished ({model_name}).")
 
     assistant_answer: str | None = response.choices[0].message.content
 
@@ -78,17 +79,15 @@ def chat(
 
     if response and assistant_answer:
         if response.usage:
-            completion_tokens = response.usage.completion_tokens
-        if response.usage:
             prompt_tokens = response.usage.prompt_tokens
+        if response.usage:
+            completion_tokens = response.usage.completion_tokens
 
     return assistant_answer, prompt_tokens, completion_tokens
 
 
 def main() -> None:
-    """
-    Main function.
-    """
+    """Main function."""
 
     os.system(command="cls" if os.name == "nt" else "clear")
 

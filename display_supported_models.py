@@ -8,9 +8,9 @@ BASE_URL: str = "https://openrouter.ai/api/v1"
 KEY_NAME_OPENAI_API_KEY: str = "OPENAI_API_KEY"
 
 
-def sort_function(model: dict):
+def sort_key(model: dict):
     """
-    Sort function.
+    Sort key.
     """
 
     return model["id"]
@@ -18,7 +18,7 @@ def sort_function(model: dict):
 
 os.system(command="cls" if os.name == "nt" else "clear")
 
-api_key: str | None = utility.get_key_value(
+api_key: str = utility.get_key_value(
     key=KEY_NAME_OPENAI_API_KEY,
 )
 
@@ -29,14 +29,14 @@ client = OpenAI(
     base_url=BASE_URL,
 )
 
-models: list[Model] = client.models.list().data
+all_models: list[Model] = client.models.list().data
 
-# print(data)  # Test
+# print(models)  # Test
 # exit()  # Test
 
-suported_models: list[dict] = []
+models: list[dict] = []
 
-for model in models:
+for model in all_models:
     if not model.model_extra:
         continue
 
@@ -50,7 +50,7 @@ for model in models:
     context_length = model.model_extra["top_provider"]["context_length"]
     max_completion_tokens = model.model_extra["top_provider"]["max_completion_tokens"]
 
-    suported_model: dict = {
+    new_model: dict = {
         "id": model.id,
         # "id": model.name,
         "modality": modality,
@@ -58,18 +58,16 @@ for model in models:
         "max_completion_tokens": max_completion_tokens,
     }
 
-    suported_models.append(suported_model)
+    models.append(new_model)
 
-suported_models.sort(key=sort_function)
+models.sort(key=sort_key)
 
-for index, suported_model in enumerate(suported_models):
+for index, model in enumerate(models):
     fixed_index: str = str(index + 1).rjust(3, " ")
-    fixed_id = str(suported_model["id"]).ljust(65, " ")
-    fixed_modality = str(suported_model["modality"]).ljust(20, " ")
-    fixed_context_length = str(suported_model["context_length"]).ljust(10, " ")
-    fixed_max_completion_tokens = str(suported_model["max_completion_tokens"]).ljust(
-        10, " "
-    )
+    fixed_id = str(model["id"]).ljust(65, " ")
+    fixed_modality = str(model["modality"]).ljust(20, " ")
+    fixed_context_length = str(model["context_length"]).ljust(10, " ")
+    fixed_max_completion_tokens = str(model["max_completion_tokens"]).ljust(10, " ")
 
     print(
         fixed_index,

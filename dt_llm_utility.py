@@ -1,5 +1,5 @@
 """
-Dariush Tasdighi LLM utility module. Version: 2.0
+Dariush Tasdighi LLM utility module. Version: 2.1
 """
 
 import os
@@ -25,10 +25,12 @@ QUESTION_PROMPT: str = "User: "
 MESSAGE_NO_CONTENT_RECEIVED: str = "[-] No content received!"
 
 
-def get_key_value(key: str) -> str:
-    """
-    Get key value.
-    """
+def get_key_value(key: str | None) -> str:
+    """Get key value function."""
+
+    if not key:
+        print("[-] Key is None!\n")
+        exit()
 
     load_dotenv(override=True)
 

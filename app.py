@@ -6,9 +6,7 @@ import dt_llm_utility as utility
 
 
 def main() -> None:
-    """
-    Main function.
-    """
+    """Main function."""
 
     os.system(command="cls" if os.name == "nt" else "clear")
 

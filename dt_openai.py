@@ -1,5 +1,5 @@
 """
-Dariush Tasdighi OpenAI module. Version: 1.0
+Dariush Tasdighi OpenAI module. Version: 1.1
 """
 
 from openai import OpenAI
@@ -28,10 +28,9 @@ def chat(
     model_name: str = MODEL_NAME,
     temperature: float = TEMPERATURE,
 ) -> tuple[str | None, int, int]:
-    """
-    Chat function.
-    """
+    """Chat function."""
 
+    # NEW
     if not api_key:
         api_key = utility.get_key_value(
             key=KEY_NAME_OPENAI_API_KEY,
@@ -49,6 +48,7 @@ def chat(
         stream=False,
         model=model_name,
         messages=messages,  # type: ignore
+        # NEW
         temperature=temperature,
     )
 
@@ -62,9 +62,9 @@ def chat(
 
     if response and assistant_answer:
         if response.usage:
-            completion_tokens = response.usage.completion_tokens
-        if response.usage:
             prompt_tokens = response.usage.prompt_tokens
+        if response.usage:
+            completion_tokens = response.usage.completion_tokens
 
     return assistant_answer, prompt_tokens, completion_tokens
 
