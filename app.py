@@ -17,6 +17,9 @@ def main() -> None:
         print("=" * 50)
         user_prompt: str = input(utility.QUESTION_PROMPT).strip()
 
+        if not user_prompt:
+            continue
+
         if user_prompt.lower() in utility.EXIT_COMMANDS:
             break
 

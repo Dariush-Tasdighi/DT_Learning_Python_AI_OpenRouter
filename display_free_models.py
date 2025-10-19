@@ -9,9 +9,7 @@ KEY_NAME_OPENAI_API_KEY: str = "OPENAI_API_KEY"
 
 
 def sort_key(model: dict):
-    """
-    Sort key.
-    """
+    """Sort key."""
 
     return model["id"]
 
@@ -31,7 +29,7 @@ client = OpenAI(
 
 all_models: list[Model] = client.models.list().data
 
-# print(models)  # Test
+# print(all_models)  # Test
 # exit()  # Test
 
 models: list[dict] = []
@@ -61,6 +59,9 @@ for model in all_models:
     models.append(new_model)
 
 models.sort(key=sort_key)
+
+# print(models)  # Test
+# exit()  # Test
 
 for index, model in enumerate(models):
     fixed_index: str = str(index + 1).rjust(3, " ")

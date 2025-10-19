@@ -1,5 +1,5 @@
 """
-Dariush Tasdighi OpenAI module. Version: 1.1
+Dariush Tasdighi OpenAI module. Version: 1.2
 """
 
 from openai import OpenAI
@@ -21,7 +21,6 @@ SYSTEM_MESSAGE: dict = {
 
 def chat(
     messages: list[dict],
-    think: bool = False,
     notify: bool = False,
     base_url: str = BASE_URL,
     api_key: str | None = None,
@@ -46,8 +45,8 @@ def chat(
     response: ChatCompletion = client.chat.completions.create(
         stream=False,
         model=model_name,
-        messages=messages,  # type: ignore
         temperature=temperature,
+        messages=messages,  # type: ignore
     )
 
     if notify:
@@ -58,7 +57,7 @@ def chat(
     prompt_tokens: int = 0
     completion_tokens: int = 0
 
-    if response and assistant_answer:
+    if assistant_answer:
         if response.usage:
             prompt_tokens = response.usage.prompt_tokens
         if response.usage:

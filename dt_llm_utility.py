@@ -1,5 +1,5 @@
 """
-Dariush Tasdighi LLM utility module. Version: 2.1
+Dariush Tasdighi LLM utility module. Version: 2.2
 """
 
 import os
